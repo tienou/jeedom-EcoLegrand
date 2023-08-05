@@ -1,2 +1,3 @@
-# jeedom-BSB-LAN
-Plugin permettant de s'interfacer avec le controleur BSB-LAN
+# jeedom-EcoLegrand
+
+Plugin permettant de récupérer les données des écocompteurs Legrand d'ancienne génération (référence 412000). 
