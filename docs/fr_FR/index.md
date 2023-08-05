@@ -8,7 +8,7 @@ Les écocompteurs 412000 ne sont plus commercialisés depuis 2020 mais ils garde
 
 La communication entre le plugin et l'écocompteur s'effectue en récupérant les données de fichiers JSON définis par l'utilisateur. L'utilisateur définit lui-même dans le fichier JSON les données qu'il souhaite récupérer.
 
-La fonction de base du plugin est la récupération des données des écocompteur. Leur exploitation doit être faite par d'autres moyens (virtuels, scénarios, ...) et nécessite une certaine maitrise de Jeedom afin de pouvoir manipuler les données.
+La fonction de base du plugin est la récupération des données des écocompteurs. Leur exploitation doit être faite par d'autres moyens (virtuels, scénarios, ...) et nécessite une certaine maitrise de Jeedom afin de pouvoir manipuler les données.
 
 # Installation et configuration de l'écocompteur EcoLegrand
 
@@ -101,7 +101,7 @@ Les boutons suivants permettent les fonctions suivantes:
 Par défaut, deux commandes sont créées :
 
 - Dernier Refresh : indique quand la dernière information de l'écocompteur a été mise à jour
-- Refresh : permet de forcer la récupération des compteurs. Un daemon lance la mise à jour toutes les minutes.
+- Refresh : permet de forcer la récupération des compteurs. Un cron lance la mise à jour toutes les minutes.
 
 Une commande info est créée pour chacun des compteurs. Pour chacun d'eux, on trouve en plus des champs habituels de jeedom :
 
