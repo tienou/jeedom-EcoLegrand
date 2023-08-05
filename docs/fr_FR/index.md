@@ -30,7 +30,7 @@ Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée e
 
 Le fichier JSON a la forme ci-dessus. Il y a une ligne par donnée à récupérer (attention à ne pas mettre de virgule sur la dernière ligne).
 
-Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien https://bernard-dandrea.github.io/jeedom-EcoLegrand/JSON_Codes.txt donne une liste non exhautive des références utilisables.
+Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien https://bernard-dandrea.github.io/jeedom-EcoLegrand/fr_FR/JSON_Codes.txt donne une liste non exhautive des références utilisables.
 
 Vous pouvez vous reporter au forum suivant https://easydomoticz.com/forum/viewtopic.php?t=1942&start=20 pour avoir plus d'informations.
 
