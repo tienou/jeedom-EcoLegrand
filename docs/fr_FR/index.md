@@ -2,35 +2,35 @@
 
 Plugin permettant de récupérer les données des écocompteurs Legrand d'ancienne génération (référence 412000). 
 
-Contrairement aux nouveaux écocompteurs dont les données ne sont accessibles qu'à travers le cloud, les anciens écocompteurs peuvent être accédés via une interface WEB locale. En particulier, on peut visualiser directement la consommation instantanée ce qui n'est pas possible avec les nouveaux écocompteurs (il faut visualiser les données directement sur l'écocompteurs).
+Contrairement aux nouveaux écocompteurs dont les données ne sont accessibles qu'à travers le cloud, les anciens écocompteurs peuvent être accédés via une interface WEB locale. En particulier, on peut visualiser directement la consommation instantanée ce qui n'est pas possible avec les nouveaux écocompteurs (il faut visualiser les données directement sur l'écocompteur).
 
-Les écocompteurs 412000 ne sont plus commercilés depuis 2020 mais ils gardent tout leur intérêt comparé à la version actuelle.
+Les écocompteurs 412000 ne sont plus commercialisés depuis 2020 mais ils gardent tout leur intérêt comparés à la version actuelle.
 
 La communication entre le plugin et l'écocompteur s'effectue en récupérant les données de fichiers JSON définis par l'utilisateur. L'utilisateur définit lui-même dans le fichier JSON les données qu'il souhaite récupérer.
 
-La fonction de base du plugin est la récupération des données des écocompteur. Leur exploitation doit être faite par d'autres moyens (virtuels, scénarios, ...) et nécessite une connaissance de base de Jeedom afin de pouvoir manipuler les données.
+La fonction de base du plugin est la récupération des données des écocompteur. Leur exploitation doit être faite par d'autres moyens (virtuels, scénarios, ...) et nécessite une certaine maitrise de Jeedom afin de pouvoir manipuler les données.
 
-# Installation et configuration du controleur EcoLegrand
+# Installation et configuration de l'écocompteur EcoLegrand
 
 Le bon fonctionnement du plugin suppose que l'écocompteur soit opérationnel et accessible via l'interface WEB.
 
-Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée et n'évoluera plus étant donné que cet écocompteur n'est plus commercialisé.
+Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée et n'évoluera plus étant donné que cet écocompteur n'est plus maintenu.
 
 # Définition des données à récupérer dans un fichier JSON
 
-{
-"compteur_C1":~LG536 2 12724$,
-"compteur_C2":~LG536 4 12724$,
-"compteur_C3":~LG536 6 12724$,
-"compteur_C4":~LG536 8 12724$,
-"compteur_C5":~LG536 10 12724$,
-"Compteur_EF":~LG538 0 12907$,
-"Compteur_EC":~LG538 1 12907$
+{  
+"compteur_C1":~LG536 2 12724$,  
+"compteur_C2":~LG536 4 12724$,  
+"compteur_C3":~LG536 6 12724$,  
+"compteur_C4":~LG536 8 12724$,  
+"compteur_C5":~LG536 10 12724$,  
+"Compteur_EF":~LG538 0 12907$,  
+"Compteur_EC":~LG538 1 12907$  
 }
 
 Le fichier JSON a la forme ci-dessus. Il y a une ligne par donnée à récupérer (attention à ne pas mettre de virgule sur la dernière ligne).
 
-Celle-ci comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien https://bernard-dandrea.github.io/jeedom-EcoLegrand/JSON_Codes.txt donne une liste non exhautive des références utilisables.
+Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien https://bernard-dandrea.github.io/jeedom-EcoLegrand/JSON_Codes.txt donne une liste non exhautive des références utilisables.
 
 Vous pouvez vous reporter au forum suivant https://easydomoticz.com/forum/viewtopic.php?t=1942&start=20 pour avoir plus d'informations.
 
@@ -40,7 +40,7 @@ La copie s'effectue via le protocole FTP. Le programme FileZilla peut être util
 
 ![FileZilla_Connect](../images/FileZilla_Connect.png)
 
-Se connecter en indiquant l'adresse IP et les codes d'acès n(par défaut admin / password ).
+Se connecter en indiquant l'adresse IP et les codes d'accès (par défaut admin / password ).
 
 ![FileZilla_SYS](../images/FileZilla_SYS.png)
 
@@ -54,15 +54,15 @@ Dans le répertoire SYS se trouvent les fichiers HTML utilisés par l'écocompte
 
 # Problème avec les compteurs d'énergie
 
-Le forum ci-dessus explique très bien la problématique rencontrée avec les compteurs d'énergie.
+Le forum ci-dessus explique très bien la problématique rencontrée avec les compteurs d'énergie (les compteurs à impulsion ne sont pas concernés).
 
 Il semble que le logiciel de l'écocompteur gère en interne ces compteurs avec des variables de type float 32. Celles-ci ont une précision d'environ 7 décimales.
 
 Ces compteurs sont mis à jour toutes les secondes et sont gérés en KWh sur 6 décimales.
 
-De ce fait, lorsque l'on dépasse les 10 KWh, on commence à perdre de la précision notamment si il y a peu de consommation sur la ligne concernée. Cela devient très pénalisant lorsque l'on dépasse les 100 KWh.
+De ce fait, lorsque l'on dépasse les 10 kWh, on commence à perdre de la précision notamment si il y a peu de consommation sur la ligne concernée. Cela devient très pénalisant lorsque l'on dépasse les 100 kWh.
 
-Pour remédier à ce probème, le plugin peut remettre les compteurs à zéro à partir d'un seuil défini par l'utilisateur. Le plugin gère le décalage et fournit une valeur cumulée du compteur. Noter que cette remise à zéro du compteur interne peut perturber les statisitiques fournies par l'écocompteur. 
+Pour remédier à ce probème, le plugin peut remettre les compteurs à zéro à partir d'un seuil défini par l'utilisateur (typiquement de 1 à 10 kWh). Le plugin gère le décalage et fournit une valeur cumulée du compteur. Noter que cette remise à zéro du compteur interne peut perturber les statistiques fournies par l'écocompteur. 
 
 # Installation du plugin
 
@@ -106,9 +106,9 @@ Par défaut, deux commandes sont créées :
 Une commande info est créée pour chacun des compteurs. Pour chacun d'eux, on trouve en plus des champs habituels de jeedom :
 
 - la coche update qui permet de demander ou non la mise à jour du compteur
-- le seuil: valeur à partir de laquelle le compteur est remis à zéro
+- le seuil qui est la valeur à partir de laquelle le compteur est remis à zéro
 - la commande qui remet à zéro le compteur
-- l'offset qui est la valeur cumulée du ccompteur lors de la remise à zéro
+- l'offset qui est la valeur cumulée du compteur lors de la remise à zéro
 - la valeur actuelle du compteur (offset + valeur du compteur dans l'écocompteur)
 
 La commande qui permet la réinitialisation des compteurs et du type http://192.168.1.xxx//wp.cgi?wp=536+X+12724+-1+-1+4+0.0 soit wp.cgi? suivi des références du compteurs et de valeurs fixes par exemple wp=536+2+12724+-1+-1+4+0.0 pour compteur_C1. Voir le forum https://easydomoticz.com/forum/viewtopic.php?t=1942&start=120 pour plus d'informations.
