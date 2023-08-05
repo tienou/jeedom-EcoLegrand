@@ -30,9 +30,9 @@ Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée e
 
 Le fichier JSON a la forme ci-dessus. Il y a une ligne par donnée à récupérer (attention à ne pas mettre de virgule sur la dernière ligne).
 
-Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien https://bernard-dandrea.github.io/jeedom-EcoLegrand/fr_FR/JSON_Codes.txt donne une liste non exhautive des références utilisables.
+Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien <https://bernard-dandrea.github.io/jeedom-EcoLegrand/fr_FR/JSON_Codes.txt> donne une liste non exhautive des références utilisables.
 
-Vous pouvez vous reporter au forum suivant https://easydomoticz.com/forum/viewtopic.php?t=1942&start=20 pour avoir plus d'informations.
+Vous pouvez vous reporter au forum suivant <https://easydomoticz.com/forum/viewtopic.php?t=1942&start=20> pour avoir plus d'informations.
 
 # Copie du fichier JSON sur l'écocompteur
 
@@ -111,7 +111,7 @@ Une commande info est créée pour chacun des compteurs. Pour chacun d'eux, on t
 - l'offset qui est la valeur cumulée du compteur lors de la remise à zéro
 - la valeur actuelle du compteur (offset + valeur du compteur dans l'écocompteur)
 
-La commande qui permet la réinitialisation des compteurs et du type http://192.168.1.xxx//wp.cgi?wp=536+X+12724+-1+-1+4+0.0 soit wp.cgi? suivi des références du compteurs et de valeurs fixes par exemple wp=536+2+12724+-1+-1+4+0.0 pour compteur_C1. Voir le forum https://easydomoticz.com/forum/viewtopic.php?t=1942&start=120 pour plus d'informations.
+La commande qui permet la réinitialisation des compteurs et du type http://192.168.1.xxx/wp.cgi?wp=536+X+12724+-1+-1+4+0.0 soit wp.cgi? suivi des références du compteurs et de valeurs fixes par exemple wp=536+2+12724+-1+-1+4+0.0 pour compteur_C1. Voir le forum <https://easydomoticz.com/forum/viewtopic.php?t=1942&start=120> pour plus d'informations.
 
 # Widget
 
