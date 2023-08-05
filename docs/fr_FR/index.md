@@ -18,7 +18,7 @@ Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée e
 
 # Définition des données à récupérer dans un fichier JSON
 
-{  
+{   
 "compteur_C1":~LG536 2 12724$,  
 "compteur_C2":~LG536 4 12724$,  
 "compteur_C3":~LG536 6 12724$,  
