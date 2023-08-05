@@ -1,0 +1,40 @@
+{
+	"id" : "EcoLegrand",
+	"name" : "Ecocompteur Legrand",
+	"specialAttributes" : {
+		"object" : {
+
+		},
+		"user" : {
+		}
+	},
+	"description" : {
+		"fr_FR": "Plugin permettant de récupérer les compteurs des écocompteurs Legand ancienne génération (ref 412000)"
+	},
+	"licence" : "AGPL",
+	"author" : "Bernard Dandrea",
+	"require" : "4.2.0",
+	"category" : "energy",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https://bernard-dandrea.github.io/jeedom-EcoLegrand/#language#/changelog",
+	"documentation" : "https://bernard-dandrea.github.io/jeedom-EcoLegrand/#language#/",
+	"changelog_beta" : "https://bernard-dandrea.github.io/jeedom-EcoLegrand/#language#/beta/changelog",
+	"documentation_beta" : "https://bernard-dandrea.github.io/jeedom-EcoLegrand/#language#/beta/",
+	"link" : {
+	},
+	"language": [
+		"fr_FR"
+	],
+	"compatibility": [
+		"miniplus",
+		"smart",
+		"rpi",
+		"docker",
+		"diy",
+		"mobile",
+		"v4",
+		"atlas"
+	]
+}
