@@ -18,17 +18,19 @@ Le plugin a été testé avec la  version 3.0.17 qui est la dernière publiée e
 
 # Définition des données à récupérer dans un fichier JSON
 
+Les données à récupérer sont définies dans un fichier JSON qui doit être copié sur l'écocompteur.
+
 {   
-"compteur_C1":~LG536 2 12724$,  
-"compteur_C2":~LG536 4 12724$,  
-"compteur_C3":~LG536 6 12724$,  
-"compteur_C4":~LG536 8 12724$,  
-"compteur_C5":~LG536 10 12724$,  
-"Compteur_EF":~LG538 0 12907$,  
-"Compteur_EC":~LG538 1 12907$  
+\"compteur_C1\":~LG536 2 12724$,  
+\"compteur_C2\":~LG536 4 12724$,  
+\"compteur_C3\":~LG536 6 12724$,  
+\"compteur_C4\":~LG536 8 12724$,  
+\"compteur_C5":~LG536 10 12724$,  
+\"Compteur_EF\":~LG538 0 12907$,  
+\"Compteur_EC\":~LG538 1 12907$  
 }
 
-Le fichier JSON a la forme ci-dessus. Il y a une ligne par donnée à récupérer (attention à ne pas mettre de virgule sur la dernière ligne).
+Le fichier JSON a la forme ci-dessus. Il y a une ligne par donnée à récupérer (attention à ne pas mettre de virgule sur la dernière ligne et à utiliser des guillemets simples).
 
 Chaque ligne comprend le nom de la donnée et la référence interne définie dans l'écocompteur. Le fichier en lien <https://bernard-dandrea.github.io/jeedom-EcoLegrand/fr_FR/JSON_codes.txt> donne une liste non exhautive des références utilisables.
 
