@@ -148,7 +148,6 @@ class EcoLegrand extends eqLogic
                 log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' existe déjà' );
             }
         }
-
     }
 
     function refresh_json()
