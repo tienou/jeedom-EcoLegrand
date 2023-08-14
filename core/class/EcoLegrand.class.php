@@ -116,7 +116,7 @@ class EcoLegrand extends eqLogic
         $obj = json_decode($obj_detail, TRUE);
         log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' ' . print_r($obj, true));
         foreach ($obj as $key => $value) {
-            log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' ' . $key . '--> ' . $value);
+            log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Tentative de création de ' . $key );
 
             $name = $key;
             if (is_object(cmd::byEqLogicIdAndLogicalId($this->getId(), $name)) == false) {
@@ -142,6 +142,10 @@ class EcoLegrand extends eqLogic
                 $cmd->setDisplay('graphType', 'column');
                 $cmd->setOrder(time());
                 $cmd->save();
+                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' créé' );
+            }
+            else {
+                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' existe déjà' );
             }
         }
 
