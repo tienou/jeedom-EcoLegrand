@@ -249,7 +249,7 @@ class EcoLegrand extends eqLogic
 
         $cmd = $this->getCmd(null, 'Refresh');
         if (!is_object($cmd)) {
-            $cmd = new EcoNetatmoCmd();
+            $cmd = new EcoLegrandCmd();
             $cmd->setName('Refresh');
             $cmd->setEqLogic_id($this->getId());
             $cmd->setType('action');
