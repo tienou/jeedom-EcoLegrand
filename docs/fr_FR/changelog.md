@@ -8,6 +8,10 @@
 
 - Correction bug lors de la création des commandes
 
+# 14/08/2023
+
+- Ajout de log sur création compteur
+
 # 05/08/2023
 
 - Initial load
