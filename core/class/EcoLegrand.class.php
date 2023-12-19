@@ -111,6 +111,7 @@ class EcoLegrand extends eqLogic
         $corrected = preg_replace ('/\:000000000,/', ': 0,', $corrected);
         $corrected = preg_replace ('/\:0,/', ': 0,', $corrected);
         $corrected = preg_replace ('/\:[0]+/', ":", $corrected);
+        $corrected = preg_replace ('/\:\./', ":0.", $corrected);
         
         $JsonDecoded = json_decode($corrected, $assoc);
         if (json_last_error() != JSON_ERROR_NONE) {
