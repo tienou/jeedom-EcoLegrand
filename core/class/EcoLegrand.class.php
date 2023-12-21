@@ -105,15 +105,7 @@ class EcoLegrand extends eqLogic
     }
     public function BD_json_decode($JsonString, $assoc)
     {
-        $corrected = utf8_encode($JsonString);
-        
-        $corrected = preg_replace ('/\s+/', '', $corrected);
-        $corrected = preg_replace ('/\:000000000,/', ': 0,', $corrected);
-        $corrected = preg_replace ('/\:0,/', ': 0,', $corrected);
-        $corrected = preg_replace ('/\:[0]+/', ":", $corrected);
-        $corrected = preg_replace ('/\:\./', ":0.", $corrected);
-        
-        $JsonDecoded = json_decode($corrected, $assoc);
+        $JsonDecoded = json_decode($JsonString, $assoc);
         if (json_last_error() != JSON_ERROR_NONE) {
             log::add('EcoLegrand', 'error', __FUNCTION__ . ' Json_decode error: ' . json_last_error_msg() . ' JSON ' . $JsonString);
         }
