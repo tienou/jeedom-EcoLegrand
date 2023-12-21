@@ -133,3 +133,24 @@ Par exemple, on peut produire un relevé de la puissance basé sur le calcul de 
 
 Ou produire des relevés journaliers de consommation électrique.
 
+# FAQ
+
+Il peut arriver que le fichier JSON renvoyé par l'écocompteur ne puisse pas être décodé. 
+
+![Json_error](../images/Json_error.png)
+
+Dans ce cas, un message est affiché dans la log.
+
+![json_lint](../images/json_lint.png)
+
+Pour trouver l'origine de l'erreur, récupérer dans la log le fichier Json retourné par l'écocompteur et le tester sur le site <https://jsonlint.com/> .
+
+Ici, l'erreur est due au fait que la routine de conversion n’apprécie pas le 0 initial dans l'entrée "Linky_Conso":024795944.
+
+On peut corriger cela en entourant la valeur 024795944 par des quotes.
+
+Pour cela, modifier le fichier de définition des données à récupérer et ajouter des quotes dans l'entrée correspondante:
+
+\"Linky_Conso\":~LG526 1 12005$, --> \"Linky_Conso\":\"~LG526 1 12005$,\"
+
+La chaine "024795944" sera alors considérée comme une chaine et il n'y aura plus de problème lors de la conversion.
