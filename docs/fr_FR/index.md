@@ -137,7 +137,7 @@ Ou produire des relevés journaliers de consommation électrique.
 
 Il peut arriver que le fichier JSON renvoyé par l'écocompteur ne puisse pas être décodé. 
 
-![sson_error](../images/sson_error.png)
+![json_error](../images/json_error.png)
 
 Dans ce cas, un message est affiché dans la log.
 
