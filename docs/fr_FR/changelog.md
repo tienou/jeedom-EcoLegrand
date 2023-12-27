@@ -4,6 +4,10 @@
 >
 >S'il n'y a pas d'information sur la mise à jour, c'est que celle-ci concerne uniquement de la mise à jour de documentation, de traduction ou de texte.
 
+# 21/12/2023
+
+- Message d'erreur dans la log si on ne peut pas décoder le JSON renvoyé par l'écocompteur (voir FAQ)
+  
 # 24/08/2023
 
 - Correction bug lors de la création des commandes

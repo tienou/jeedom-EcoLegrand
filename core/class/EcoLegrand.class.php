@@ -54,14 +54,12 @@ class EcoLegrand extends eqLogic
                 log::add('EcoLegrand', 'debug', 'curl_exec http error ' . $http_code);
                 throw new \Exception(__('EcoLegrand http error : ', __FILE__) . $http_code . ' response --> ' . strip_tags($response));
             }
-
         } catch (\Throwable $th) {
             throw $th;
         } finally {
             curl_close($ch);
         }
         return $response;
-
     }
 
     public function reset_counter($reset)
@@ -97,7 +95,6 @@ class EcoLegrand extends eqLogic
                 log::add('EcoLegrand', 'debug', 'curl_exec http error ' . $http_code);
                 // throw new \Exception(__('EcoLegrand http error : ', __FILE__) . $http_code . ' response --> ' . strip_tags($response));
             }
-
         } catch (\Throwable $th) {
             throw $th;
         } finally {
@@ -105,18 +102,23 @@ class EcoLegrand extends eqLogic
         }
 
         return $return;
-
-
     }
-
+    public function BD_json_decode($JsonString, $assoc)
+    {
+        $JsonDecoded = json_decode($JsonString, $assoc);
+        if (json_last_error() != JSON_ERROR_NONE) {
+            log::add('EcoLegrand', 'error', __FUNCTION__ . ' Json_decode error: ' . json_last_error_msg() . ' JSON ' . $JsonString);
+        }
+        return $JsonDecoded;
+    }
     public function create_counters()
     {
         log::add('EcoLegrand', 'info', __('create_counters', __FILE__) . ' ' . $this->name);
         $obj_detail = $this->get_json();
-        $obj = json_decode($obj_detail, TRUE);
+        $obj = EcoLegrand::BD_json_decode($obj_detail, TRUE);
         log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' ' . print_r($obj, true));
         foreach ($obj as $key => $value) {
-            log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Tentative de création de ' . $key );
+            log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Tentative de création de ' . $key);
 
             $name = $key;
             if (is_object(cmd::byEqLogicIdAndLogicalId($this->getId(), $name)) == false) {
@@ -142,10 +144,9 @@ class EcoLegrand extends eqLogic
                 $cmd->setDisplay('graphType', 'column');
                 $cmd->setOrder(time());
                 $cmd->save();
-                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' créé' );
-            }
-            else {
-                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' existe déjà' );
+                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' créé');
+            } else {
+                log::add('EcoLegrand', 'debug', __('create_counters', __FILE__) . ' Compteur ' . $key . ' existe déjà');
             }
         }
     }
@@ -155,7 +156,7 @@ class EcoLegrand extends eqLogic
 
         log::add('EcoLegrand', 'info', __('refresh_json', __FILE__) . ' ' . $this->name);
         $obj_detail = $this->get_json();
-        $obj = json_decode($obj_detail, TRUE);
+        $obj = EcoLegrand::BD_json_decode($obj_detail, TRUE);
         log::add('EcoLegrand', 'debug', __('refresh_json', __FILE__) . ' ' . print_r($obj, true));
         foreach ($obj as $key => $value) {
             log::add('EcoLegrand', 'debug', __('refresh_json', __FILE__) . ' ' . $key . '--> ' . $value);
@@ -181,13 +182,11 @@ class EcoLegrand extends eqLogic
                                     $cmd->save();
                                 }
                             }
-
                         }
                     }
                     // $this->reset_counter($reset)  // pour tests
 
                 }
-
             }
         }
         $cmd = cmd::byEqLogicIdAndLogicalId($this->getId(), 'updatetime');
@@ -260,7 +259,6 @@ class EcoLegrand extends eqLogic
             $cmd->setDisplay('generic_type', 'GENERIC_INFO');
             $cmd->save();
         }
-
     }
 
     public function cron()
@@ -279,7 +277,6 @@ class EcoLegrand extends eqLogic
             }
         }
     }
-
 }
 
 class EcoLegrandCmd extends cmd
