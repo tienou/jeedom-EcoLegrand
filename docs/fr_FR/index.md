@@ -154,3 +154,9 @@ Pour cela, modifier le fichier de définition des données à récupérer et ajo
 \"Linky_Conso\":~LG526 1 12005$, --> \"Linky_Conso\":\"~LG526 1 12005$,\"
 
 La chaine "024795944" sera alors considérée comme une chaine et il n'y aura plus de problème lors de la conversion.
+
+# Avis
+
+![EcoLegrand_avis](../images/EcoLegrand_avis.png)
+
+Si vous appréciez ce plugin, merci de laisser une évaluation et un commentaire sur le Jeedom market, ça fait toujours plaisir: <https://jeedom.com/market/index.php?v=d&p=market_display&id=4430#>
