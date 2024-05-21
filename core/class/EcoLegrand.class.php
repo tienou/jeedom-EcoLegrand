@@ -39,15 +39,35 @@ class EcoLegrand extends eqLogic
 
             curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+            $timeout = $this->getConfiguration('timeout', '15');
+            if (is_numeric($timeout)) {
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+            }
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            $response = curl_exec($ch);
 
-            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $retry = $this->getConfiguration('retry', '3');
+            if (is_numeric($retry) == false) {
+                $retry = 3;
+            } else {
+                if ($retry <= 0) {
+                    $retry = 1;
+                }
+            }
+            $essai = 0;
+            while ($essai < $retry) {
+                $response = curl_exec($ch);
+                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                if ($http_code == intval(200)) {
+                    break;
+                }
+                log::add('BSBLAN', 'warning', 'curl_exec response : http_code ' . $http_code . ' Curl error: ' . curl_error($ch) . ' -> nouvel essai');
+                $essai = $essai + 1;
+            }
+
             if ($http_code == intval(200)) {
                 log::add('EcoLegrand', 'debug', 'curl_exec response : $http_code ' . $http_code . ' response --> ' . strip_tags($response));
             } else {
