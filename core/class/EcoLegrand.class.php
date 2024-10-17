@@ -39,35 +39,15 @@ class EcoLegrand extends eqLogic
 
             curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $timeout = $this->getConfiguration('timeout', '15');
-            if (is_numeric($timeout)) {
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-                curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-            }
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 15);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            $response = curl_exec($ch);
 
-            $retry = $this->getConfiguration('retry', '3');
-            if (is_numeric($retry) == false) {
-                $retry = 3;
-            } else {
-                if ($retry <= 0) {
-                    $retry = 1;
-                }
-            }
-            $essai = 0;
-            while ($essai < $retry) {
-                $response = curl_exec($ch);
-                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                if ($http_code == intval(200)) {
-                    break;
-                }
-                log::add('BSBLAN', 'warning', 'curl_exec response : http_code ' . $http_code . ' Curl error: ' . curl_error($ch) . ' -> nouvel essai');
-                $essai = $essai + 1;
-            }
-
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             if ($http_code == intval(200)) {
                 log::add('EcoLegrand', 'debug', 'curl_exec response : $http_code ' . $http_code . ' response --> ' . strip_tags($response));
             } else {
@@ -123,7 +103,7 @@ class EcoLegrand extends eqLogic
 
         return $return;
     }
-    public function BD_json_decode($JsonString, $assoc)
+    public static function BD_json_decode($JsonString, $assoc)
     {
         $JsonDecoded = json_decode($JsonString, $assoc);
         if (json_last_error() != JSON_ERROR_NONE) {
@@ -281,14 +261,14 @@ class EcoLegrand extends eqLogic
         }
     }
 
-    public function cron()
+    public static function cron()
     {
         log::add('EcoLegrand', 'info', 'Lancement de cron');
         EcoLegrand::cron_update(__FUNCTION__);
     }
 
 
-    public function cron_update($_cron)
+    public static function cron_update($_cron)
     {
         foreach (eqLogic::byTypeAndSearchConfiguration('EcoLegrand', '"type":"EcoLegrand"') as $eqLogic) {
             if ($eqLogic->getIsEnable() && $eqLogic->getConfiguration('ip', '') != '' && $eqLogic->getConfiguration('json', '') != '') {
